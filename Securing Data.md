@@ -211,5 +211,28 @@ Edit /etc/systemd/system/vncserver@.service and modify the following line to rep
 ExecStart=/sbin/runuser -l <USER> -c "/usr/bin/vncserver %i"
 PIDFile=/home/<USER>/.vnc/%H%i.pid
 ```
- 
-  
+Now create a VNC password
+`vncpasswd`
+
+After which just restart the daemons
+```
+systemctl daemon-reload
+systemctl start vncserver@:1
+```
+On client
+install vnc package
+
+`yum install vnc`
+Connect to the server using VNC
+```
+vncviewer server_IP:1
+```
+Connect to the VNC Server through a SSH tunnel by running the following 
+```
+vncviewer –via serverIP localhost:1
+```
+## Using SSH Tunnel to do Local Port Forwarding
+To block TCP ssh forwarding edit `/etc/ssh/sshd_config` and set the following value to no
+```
+AllowTCPForwarding no
+```
