@@ -51,7 +51,7 @@ valid users = john mary
 invalid users = hacker
 ```
 
-** DO NOTE THAT SAMBA SHARE BY DEFAULT IS READ-ONLY **
+**DO NOTE THAT SAMBA SHARE BY DEFAULT IS READ-ONLY**
 To allow changes to Samba shares
 ```
 writable = yes
