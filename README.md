@@ -63,7 +63,7 @@ In linux ``iptables`` is commonly used and ``firewalld`` runs on top of iptables
 To reload firewall in command line use
 ```firewall-cmd --reload```
 
-#Firewall Man pages
+# Firewall Man pages
 ```man firewall-cmd```
 Help on the main firewall-cmd command
 
@@ -75,3 +75,13 @@ Help on the service xml config files
 
 ```firewalld.icmptype```
 Help on the icmp xml config files
+
+# Rich Rules
+Rich rules are stored in 
+``` /etc/firewalld/zones```
+
+# All Configurations to be listed can either be found in
+```cat /etc/firewalld/zones/public.xml```
+OR 
+```firewall-cmd --list-all```
+
