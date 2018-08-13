@@ -124,9 +124,9 @@ To see how big each user's home directory is
 ```
 du -sh /home/*
 ```
-
 Use `iostat` to see CPU and disk utilization
-```iostat
+```
+iostat
 ```
 ```
 iostat -N (to view logical volume disk utilization)
