@@ -56,3 +56,43 @@ logger -p authpriv.alert "This is a test alert"
 ```
 logger -p authpriv.info "This is a test info msg"
 ```
+
+## Remote Logging
+
+On Server
+
+edit `/etc/rsyslog.conf`
+
+Remove the comment sign from these 2 lines
+```
+$ModLoad imudp
+$UDPServerRun 514
+```
+
+Afterwhich restart rsyslog daemon and adjust the firewall to allow incoming connection for the rsyslog port
+
+On Client
+
+edit `/etc/rsyslog.conf` and change to the serverIP
+```
+authpriv.warning @serverip
+```
+Restart rsyslog daemon
+Run the logger
+Both warning should now appear in client and server
+
+## Resolving IP addresses in Apache Logs
+
+To look for Apache access log files
+```
+ls /var/log/httpd
+```
+Use `logresolve` command to resolve the IP addresses contained in the log file and Store it to a output file
+```
+logresolve < /var/log/httpd/<site_access_log> > /tmp/apachelog
+```
+
+## Webalizer
+Need to install GeoIP first and then webalizer
+`yum install GeoIP`
+`yum install webalizer`
