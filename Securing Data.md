@@ -49,15 +49,17 @@ gpg -a --export <NameOfKeyEgAliceTan> > /output/file
 ```
 To import from another user
 ```
-gpg --import /output/fileofkeyuwant
+gpg --import /output/file
 ```
 
 Now for another user to encrypt the file using other people public key use
 ```
-gpg --recipient <KeyName> -a -o /output/file -e /file/toencrypt
+gpg --recipient <KeyName> -a -o /output/ciphertext -e /file/toencrypt
 ```
+The `/output/ciphertext` refers to once encryption has been done it will be outputed to the file `output/ciphertext`
+
 To decrypt 
 ```
-gpg -o outputtext -a -d /output/file
+gpg -o outputtext -a -d /output/ciphertext
 ```
 
