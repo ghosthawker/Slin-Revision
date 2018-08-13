@@ -95,4 +95,10 @@ logresolve < /var/log/httpd/<site_access_log> > /tmp/apachelog
 ## Webalizer
 Need to install GeoIP first and then webalizer
 `yum install GeoIP`
+
 `yum install webalizer`
+
+## Finding file baes on specific criteria
+
+`find . -perm 644` Used for finding files with -rw-r--r--
+
