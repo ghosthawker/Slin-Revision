@@ -45,7 +45,7 @@ In linux ``iptables`` is commonly used and ``firewalld`` runs on top of iptables
  /usr/lib/firewalld/services
  ```
  
- ## Runtime of Permanent
+ ## Runtime or Permanent
  ```
  Runtime
  ```
