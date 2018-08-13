@@ -100,5 +100,37 @@ Need to install GeoIP first and then webalizer
 
 ## Finding file baes on specific criteria
 
-`find . -perm 644` Used for finding files with -rw-r--r--
+`find . -perm 644` Used for finding files with `-rw-r--r--`
 
+`find / -nouser` Used for finding files that belong  to no user
+
+`find / -mtime -1` Used for finding files that has been modified in the last day
+
+`find / -mmin -60` Used for fiding files that have been modified in the last hour
+
+## Listing open files(lsof)
+
+`lsof +D /tmp` list open files in `/tmp` directory
+
+`lsof -n -i` list files open by network-related process
+
+## Getting usage statistics
+To get disk space utilization
+`df -T`
+OR
+`df -Th`
+
+To see how big each user's home directory is
+```
+du -sh /home/*
+```
+
+Use `iostat` to see CPU and disk utilization
+```iostat
+```
+```
+iostat -N (to view logical volume disk utilization)
+```
+```
+iostat -m (to view in megabytes instead of kilobytes)
+```
