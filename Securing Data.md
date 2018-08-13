@@ -156,7 +156,7 @@ Go to web browser `http://localhost/pub/slin-ca.crt` and view the cert
 ## Sign Apache Web Server certificate using private CA
 Firstly we need to generate the private key in `/etc/pki/tls` so cd to it
 
-Next create a private key in this case we are creating a 2014 bits key
+Next create a private key in this case we are creating a 1024 bits key
 ```
 openssl genrsa 1024 > private/httpd2.key
 ```
