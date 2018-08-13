@@ -60,6 +60,7 @@ The `/output/ciphertext` refers to once encryption has been done it will be outp
 
 To decrypt 
 ```
-gpg -o outputtext -a -d /output/ciphertext
+gpg -o OutputText -a -d /output/ciphertext
 ```
+The `OutputText` refers to when u decrypt the content will be store in OutputText
 
