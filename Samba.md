@@ -103,7 +103,8 @@ Check that the `/etc/samba/smb.conf` contains the following lines
   read only = No
   inherit acls = Yes
  ```
- If its not that add it in
+ If its not that add it in.
+ 
  Next turn on SELinux Boolean samba_enable_home_dirs(make the setting persistent)
  ```
  setsebool -P samba_enable_home_dirs on
