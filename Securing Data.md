@@ -92,7 +92,7 @@ If SSL Module is not installed
 yum install mod_ssl
 ```
 To configure Apache to use the certs edit the file `/etc/httpd/conf.d/ssl.conf`
-Look for the lines and change it to ur cert and key
+Look for the lines and change it to your cert and key
 ```
 SSLCertificateFile /etc/pki/tls/certs/httpd.crt 
 SSLCertificateKeyFile /etc/pki/tls/private/httpd.key 
@@ -104,3 +104,89 @@ openssl rsa httpd.key -out httpd_nopass.key
 ```
 Afterwhich just replace the key again in `/etc/httpd/conf.d/ssl.conf`
 
+## Set up a private Certificate Authority(CA)
+Firstly you need to check whether you got these 2 directory if you dont have them create it
+```
+/etc/pki/CA/private	(this will store the private key of your private CA)
+/etc/pki/CA/certs		(this will store the certificate of your private CA)
+```
+Make sure that the `the /etc/pki/CA/private ` directory is only accessible only by root
+
+Now edit the file in `/etc/pki/tls/openssl.cnf`
+```
+dir = /etc/pki/CA
+certificate = $dir/certs/slin-ca.crt
+private_key = $dir/private/slin-ca.key
+```
+**DO NOTE THAT THE ABOVE CERT AND KEY NEEDS TO BE CREATED**
+
+So now we will create them
+```
+touch /etc/pki/CA/index.txt
+echo 01 > /etc/pki/CA/serial
+```
+cd to `/etc/pki/CA`
+
+Generate a 2048 but private key using triple des
+```
+openssl genrsa -des3 2048 > private/slin-ca.key
+```
+chmod the key so that it is only accessible by root
+```
+chmod 600 /etc/pki/CA/private/slin-ca.key
+```
+Generate a self-singed certificate for your private CA
+```
+openssl req -new -x509 -days 365 -key private/slin-ca.key > certs/slin-ca.crt
+```
+When ask for values just set
+```
+Country Name (2 letter code) : SG
+State or Province Name : Singapore
+Locality Name (eg. city) : Singapore
+Organization Name (eg. company) : SP
+Organizational Unit Name (eg. section) : CA
+Common Name : <Enter your server’s hostname, eg server>
+Email Address : <Leave Blank>
+```
+After creating just copy it to the web server so it can be view by public
+`cp /etc/pki/CA/certs/slin-ca.crt /var/www/html/pub`
+Go to web browser `http://localhost/pub/slin-ca.crt` and view the cert
+
+## Sign Apache Web Server certificate using private CA
+Firstly we need to generate the private key in `/etc/pki/tls` so cd to it
+
+Next create a private key in this case we are creating a 2014 bits key
+```
+openssl genrsa 1024 > private/httpd2.key
+```
+Make sure the private key is only accessible by root
+
+Now generate the certificate signing request
+```
+openssl req -new -key private/httpd2.key -out certs/httpd2.csr
+```
+Enter the following when generating the certificate signing request
+```
+Country Name (2 letter code) : SG
+State or Province Name : Singapore
+Locality Name (eg. city) : Singapore
+Organization Name (eg. company) : SP
+Organizational Unit Name (eg. section) : Web Server
+Common Name : <Enter your server’s hostname, eg server>
+Email Address : <Leave Blank>
+A challenge password : <Leave Blank>
+An optional company name : <Leave Blank>
+```
+Use the CA private key to sign the CSR.
+```
+openssl ca -in certs/httpd2.csr -out certs/httpd2.crt
+```
+Now configure apache to use the certificate and private key edit `/etc/httpd/conf.d/ssl.conf `
+
+Modify the part called `SSLCertificateFile` & `SSLCertificateKeyFile`
+```
+SSLCertificateFile /etc/pki/tls/certs/httpd2.crt 
+SSLCertificateKeyFile /etc/pki/tls/private/httpd2.key 
+```
+After which just restart your apache server
