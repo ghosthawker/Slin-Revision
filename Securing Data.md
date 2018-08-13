@@ -190,3 +190,26 @@ SSLCertificateFile /etc/pki/tls/certs/httpd2.crt
 SSLCertificateKeyFile /etc/pki/tls/private/httpd2.key 
 ```
 After which just restart your apache server
+## SSH with key-based authentication
+On client generate a pair of private/public RSA key for SSH
+```
+ssh-keygen -t rsa
+(* When prompt for output file name , take the default. When prompt for pass phrase , you may or may not press Enter.)
+```
+To check the key
+`ls /home/user/.ssh`
+
+Now just copy the key over to the server `authorized_key` folder
+`scp /home/student/.ssh/id_rsa.pub serverIP:/home/student/.ssh/authorized_keys`
+## Virtual Network Computing through SSH Tunnel
+On server install `vnc-server`
+```
+yum install vnc-server
+```
+Edit /etc/systemd/system/vncserver@.service and modify the following line to replace <USER> with student to connect.
+```
+ExecStart=/sbin/runuser -l <USER> -c "/usr/bin/vncserver %i"
+PIDFile=/home/<USER>/.vnc/%H%i.pid
+```
+ 
+  
