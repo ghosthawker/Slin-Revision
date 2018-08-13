@@ -151,3 +151,21 @@ sar -n DEV
 ```
 
 ## Setting process limits
+
+To set process limits edit the file `/etc/security/limits.conf`
+
+To set to restrict a user to only one login append the file
+
+```
+user hard maxlogins 1
+```
+Use `man limits.conf` to see possible configurations
+
+## Process Accounting
+This is mainly done by the program called psacct
+`yum install psacct`
+Start the service
+
+Use the command `ac -dp` to check the daily connect times for each user
+
+use the command `lastcomm user` to view the most recent command use by the user
