@@ -134,3 +134,20 @@ iostat -N (to view logical volume disk utilization)
 ```
 iostat -m (to view in megabytes instead of kilobytes)
 ```
+
+Run the `sar` command to see a summary of CPU activity.
+
+To view available reports and see a report of CPU activity of a previous day. The log files are created on a daily basis, with the filename corresponding to the date.
+```
+ls -l /var/log/sa
+```
+```
+sar -f /var/log/sa/filename | less
+```
+
+To view network statistics on each network interface
+```
+sar -n DEV
+```
+
+## Setting process limits
