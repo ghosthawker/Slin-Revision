@@ -45,3 +45,14 @@ What that essentially does is that when a authpriv message with priority warning
 
 After editing the file always remember to restart the service
 `systemctl restart rsyslog`
+
+Use the logger command to create logged entry
+```
+logger -p authpriv.warning "This is a test warning"
+```
+```
+logger -p authpriv.alert "This is a test alert"
+```
+```
+logger -p authpriv.info "This is a test info msg"
+```
