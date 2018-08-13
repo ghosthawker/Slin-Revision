@@ -57,3 +57,21 @@ In linux ``iptables`` is commonly used and ``firewalld`` runs on top of iptables
  ```
  When in `RUNTIME` mode when the firewall is reloaded, the changes will be lost. When in ``Permanent`` mode the change is not applied immediately and would require a firewall to be reloaded. However the change will still be there even thou the firewall is reloaded
  
+ When running any command with ``firewall-cmd`` command all changes are runtime. To be able to make it permanent run it with 
+ ```firewall-cmd --permanent --zone=public --add-service=tftp```
+
+To reload firewall in command line use
+```firewall-cmd --reload```
+
+#Firewall Man pages
+```man firewall-cmd```
+Help on the main firewall-cmd command
+
+```man firewalld.zone```
+Help on the zone xml config files and also contains the rich rules syntax
+
+```man firewalld.service```
+Help on the service xml config files
+
+```firewalld.icmptype```
+Help on the icmp xml config files
