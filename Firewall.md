@@ -84,4 +84,5 @@ Rich rules are stored in
 ```cat /etc/firewalld/zones/public.xml```
 OR 
 ```firewall-cmd --list-all```
+
 To learn more about [FirewallD](https://www.tecmint.com/firewalld-rules-for-centos-7/)
