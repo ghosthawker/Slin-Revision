@@ -67,3 +67,28 @@ To make samba share hidden from browsing
 browsable = no
 ```
 
+# Steps in creating a Samba Share
+Install Samba server and the client
+``yum install samba``
+``yum install samba-client``
+
+Start samba service and make it start automatically on bootup
+``systemctl start smb``
+``systemctl enable smb``
+
+Create a directory for sharing
+``mkdir /samba_share``
+Change its group owner to the group in which the user you want to share to is in
+``chgrp testgrp /samba_share``
+And give full access
+``chmod 775 /samba_share``
+
+Next edit the config file which is located in `/etc/samba/smb.conf`
+Add this to the end of the file
+```
+[myshare]
+comment = My samba share for the grp
+path = /samba_share
+guest ok = yes
+```
+
