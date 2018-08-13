@@ -64,3 +64,4 @@ gpg -o OutputText -a -d /output/ciphertext
 ```
 The `OutputText` refers to when u decrypt the content will be store in OutputText
 
+To learn more about [Signing a file](https://www.thegeekstuff.com/2013/04/gnupg-digital-signatures/).
