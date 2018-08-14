@@ -80,6 +80,22 @@ Help on the icmp xml config files
 Rich rules are stored in 
 ``` /etc/firewalld/zones```
 
+Add rich rule to firewall to allow certain IP to access FTP
+```
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 service name=ftp source address=192.168.0.0/16 accept'
+```
+Add rich rules to firewall to allow certain IP to access SMTP
+```
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 port port=25 protocol=tcp source address=192.168.0.0/16 accept' (take note SMTP is using port 25)
+```
+Add rich rules to firewall to allow Samba
+```
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 port port=445 protocol=tcp source address=192.168.0.0/16 accept' (take note SAMBA is using port 445)
+```
+Add direct interface rule to block outgoing traffic on IP 
+```
+firewall-cmd –-permanent --direct --add-rule ipv4 filter OUTPUT 1 –p icmp –d 192.168.1.10 –j DROP
+```
 # All Configurations to be listed can either be found in
 ```cat /etc/firewalld/zones/public.xml```
 OR 
