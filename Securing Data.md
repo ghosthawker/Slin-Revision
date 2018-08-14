@@ -24,7 +24,7 @@ Next enter the password
 
 To decrypt the file
 ```
-openssl des3 -d -in /file/todecrypt/
+openssl des3 -d -in /file/todecrypt/ -out /output/file
 ```
 
 ## Asymmetric encryption
