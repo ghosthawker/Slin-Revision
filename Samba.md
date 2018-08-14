@@ -109,3 +109,4 @@ Check that the `/etc/samba/smb.conf` contains the following lines
  ```
  setsebool -P samba_enable_home_dirs on
  ```
+More help on [SELinux on samba](https://serverfault.com/questions/131105/how-do-i-get-selinux-to-allow-apache-and-samba-on-the-same-folder)
