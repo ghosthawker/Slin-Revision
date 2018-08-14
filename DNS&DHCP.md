@@ -40,3 +40,59 @@ systemctl enable named
 ```
 To check error logs in named service it is located in `/var/log/messages`
 
+You will need to change `/etc/resolv.conf` comment everything except `nameserver` and set it to your server ip
+
+To make the changes in `/etc/resolv.conf` permanent you need to modify `/etc/NetworkManager/NetworkManager.conf`
+
+Set dns = none
+```
+[main]
+plugins=ifcfg-rh
+dns=none
+```
+Now just restart NetworkManager
+
+Now do a host you should see the result come from your server IP
+
+## Setting up a Forward Lookup Zone
+
+Firstly edit `/etc/named.conf` and declare the zone
+
+Add in 
+```
+zone "example.com" IN{
+  type master;
+  file "example.com.zone"
+};
+```
+After which create a new file ` vim /var/named/example.com.zone`
+
+Add in the following content
+```
+$TTL 86400
+example.com.       IN SOA server root (
+                          42   ; serial
+                          3H   ; refresh
+                          15M  ; retry
+                          1W   ; expiry
+                          1D ) ; minimum
+example.com.     	IN NS server
+example.com.		IN MX 10 server
+
+server			IN A 172.16.10.13 (Changed to server IP)
+client			IN A 172.16.10.33 (Changed to client IP)
+testpc             IN A 172.16.199 (Changed to random fake IP)
+```
+Now change the owner of `/var/etc/named/example.com.zone` to named
+
+`chgrp named /var/named/example.com.zone`
+Restart named service and it should be working now
+
+## Setting up Reverse Lookup Zone
+Edit `/etc/named.conf` and declare the reverse lookup zone
+
+```
+zone "10.16.172.in-addr.arpa" IN {    (For this line the ip address is the reverse of ur subnet without the last number)
+  type master;
+  file "172.16.10.zone"               (For this line the ip address is ur subnet without the last number)
+};
