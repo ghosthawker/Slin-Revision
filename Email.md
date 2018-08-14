@@ -34,7 +34,7 @@ Edit `/etc/postfix/main.cf` and change `mynetworks = <whatever they want>`
 Restart postfix
 
 ## Configuring SMTP Server to receive mails for local domain
-Edit `/etc/postifx/main.cf`
+Edit `/etc/postfix/main.cf`
 
 ```
 mydestination = $myhostname, localhost.$mydomain, localhost, example.com (Add whichever domain u need)
