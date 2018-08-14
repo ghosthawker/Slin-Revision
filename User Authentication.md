@@ -75,7 +75,7 @@ To restrict a user to use vsftpd on Mon edit `/etc/security/time.conf`
 vsftpd;*;alvin;!Mo0000-2400
 ```
 
-## Allocating adming task for normal users 
+## Allocating admin task for normal users 
 Use `visudo`
 
 Add this to allow a user(In this case it's simon)who can use `systemctl` to start `httpd`
