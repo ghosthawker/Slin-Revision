@@ -18,13 +18,13 @@ md5sum /file/uwant > /output/file
 
 To encrypt file with triple des
 ```
-openssl des3 -base 64 -in /input/file -out /output/file
+openssl des3 -in /input/file -out /output/file
 ```
 Next enter the password
 
 To decrypt the file
 ```
-openssl des3 -d -base64 -in /file/todecrypt/
+openssl des3 -d -in /file/todecrypt/
 ```
 
 ## Asymmetric encryption
