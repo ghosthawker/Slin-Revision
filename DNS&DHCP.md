@@ -19,11 +19,24 @@ nameserver 192.168.5.2
 ```
 The IP we are intrested in is `192.168.5.2`
 
-Now edit `/etc/named.conf`
+**Do Note that everything in `/etc/named.conf` is very sensitive meaning missing of `;` will cause everything to fail so check carefully**
+
+Now edit `/etc/named.conf` on the `options` tab
 ```
 listen-on port 53 { any; }; (Changed the thing inside the curly brackets to any)
 allow-query { localhost; 192.168.137.0/24; }; (Change the IP Address to the subnet of the server)
 forwarders { 192.168.137.2; }; (Change to the DNS server which is nameserver in /etc/resolve.conf)
 ```
 
+As the original local DNS Server may not be able top support DNSSEC, disable the DNSSEC validation by changing the following lines
+```
+dnssec-enable no;
+dnssec-validation	  no;
+```
+Now just start the named service and set it to be automatically started on bootup
+```
+systemctl start named
+systemctl enable named
+```
+To check error logs in named service it is located in `/var/log/messages`
 
