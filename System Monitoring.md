@@ -31,6 +31,32 @@ tcpdump -c 2000 -w /path/to/file
 For more info on [tcpdump](https://bencane.com/2014/10/13/quick-and-practical-reference-for-tcpdump/).
 
 ## System Logging
+Types of [system logging](http://www.aboutlinux.info/2005/09/system-logging-explained-in-linux.html)
+```bash
+# debug
+Debugging info
+
+#info
+General info messages
+
+#notice
+Normal but significatn condition
+
+#warning
+warning message
+
+#err
+Error condition
+
+#crit
+Critical condition
+
+#alert
+Immediate action required
+
+#emerg
+System no longer available
+```
 Failed login files are located in `/var/log/secure`
 
 To edit system logging files edit the files located in `/etc/rsyslog.conf`
