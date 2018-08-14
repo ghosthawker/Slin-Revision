@@ -40,4 +40,7 @@ Edit `/etc/postfix/main.cf`
 mydestination = $myhostname, localhost.$mydomain, localhost, example.com (Add whichever domain u need)
 ```
 
+## To add mail alias
+Edit `/etc/aliases`
+
 Configure Postfix to send mail using [GMAIL](https://www.linode.com/docs/email/postfix/configure-postfix-to-send-mail-using-gmail-and-google-apps-on-debian-or-ubuntu/)
