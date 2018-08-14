@@ -33,7 +33,7 @@ For more info on [tcpdump](https://bencane.com/2014/10/13/quick-and-practical-re
 ## System Logging
 Types of [system logging](http://www.aboutlinux.info/2005/09/system-logging-explained-in-linux.html)
 ```bash
-# debug
+#debug
 Debugging info
 
 #info
