@@ -40,7 +40,7 @@ Debugging info
 General info messages
 
 #notice
-Normal but significatn condition
+Normal but significant condition
 
 #warning
 warning message
