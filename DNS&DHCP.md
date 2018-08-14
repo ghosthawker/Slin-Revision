@@ -96,3 +96,30 @@ zone "10.16.172.in-addr.arpa" IN {    (For this line the ip address is the rever
   type master;
   file "172.16.10.zone"               (For this line the ip address is ur subnet without the last number)
 };
+```
+Now create a reverse zone file called `/var/named/192.168.13.zone` (use ur subnet)
+```
+$TTL	86400
+@	IN SOA server.example.com. root.server.example.com. (
+			42	; serial
+			28800	; refresh
+			14400	; retry
+			3600000	; expiry
+			86400 )	; minimum
+	IN NS	server.example.com.
+
+33	IN PTR	client.example.com. (Changed to last octet of client)
+13	IN PTR	server.example.com. (Changed to last octet of server)
+199	IN PTR	testpc.example.com.
+```
+Changed Group owner to named and restart service
+
+## Connecting DNS Server from client 
+Just edit `/etc/resolv.conf` in client and comment all line in it
+and change `namedserver <Server IP>`
+
+## Perform a Zone transfer
+Edit `/etc/named.conf` add a line in `Options` area
+```
+allow-transfer { 172.16.10.199; }; (Change to something you want)
+```
