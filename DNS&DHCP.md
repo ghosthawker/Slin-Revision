@@ -31,7 +31,7 @@ forwarders { 192.168.5.2; }; (Change to the DNS server which is nameserver in /e
 As the original local DNS Server may not be able top support DNSSEC, disable the DNSSEC validation by changing the following lines
 ```
 dnssec-enable no;
-dnssec-validation	  no;
+dnssec-validation no;
 ```
 Now just start the named service and set it to be automatically started on bootup
 ```
