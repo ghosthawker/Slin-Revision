@@ -121,7 +121,7 @@ and change `namedserver <Server IP>`
 ## Perform a Zone transfer
 Edit `/etc/named.conf` add a line in `Options` area
 ```
-allow-transfer { 172.16.10.199; }; (Change to something you want)
+allow-transfer { 172.16.10.199; }; (Change the IP to something you want)
 ```
 To do a zone transfer using `dig`
 ```
