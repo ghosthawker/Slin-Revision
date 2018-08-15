@@ -2,7 +2,7 @@
 # Chapter 8 DNS&DHCP
 
 ## Setting up a basic cachin-only DNS Server using bind
-Firstly install `bind` & `bind-utils` these 2 utilities are used to do DNS lookupp mainly `host` & `dig`
+Firstly install `bind` & `bind-utils` these 2 utilities are used to do DNS lookup mainly `host` & `dig`
 ```
 yum install bind bind-utils
 ```
