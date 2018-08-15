@@ -123,3 +123,8 @@ Edit `/etc/named.conf` add a line in `Options` area
 ```
 allow-transfer { 172.16.10.199; }; (Change to something you want)
 ```
+To do a zone transfer using `dig`
+`dig axfr @dns-server domain.name`
+
+To do a zone transfer using `host`
+`host -t axfr domain.name dns-server`
