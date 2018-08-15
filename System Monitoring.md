@@ -133,7 +133,7 @@ Need to install GeoIP first and then webalizer
 
 `find / -mtime -1` Used for finding files that has been modified in the last day
 
-`find / -mmin -60` Used for fiding files that have been modified in the last hour
+`find / -mmin -60` Used for finding files that have been modified in the last hour
 
 ## Listing open files(lsof)
 
